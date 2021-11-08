@@ -38,20 +38,14 @@ public class EnemyShipController : MonoBehaviour
             }
             else if (right)
             {
-                //m_Rigidbody.AddTorque(-3);
-                //NewExhaust(transform.right * -3f + transform.up * 6f, transform.right * -1f, 30);
                 rightThruster.Thrust();
             }
             else if (!right)
             {
-                //m_Rigidbody.AddTorque(3);
-                //NewExhaust(transform.right * 3f + transform.up * 5.5f, transform.right * 1f, 30);
                 leftThruster.Thrust();
             }
             if (shipDistance > 600 && Math.Abs(angleDifference) < 90)
             {
-                //m_Rigidbody.AddForce(transform.up * m_Speed);
-                //NewExhaust(transform.up * -9f, transform.up * -1f, 80);
                 mainThruster.Thrust();
             }
         } else

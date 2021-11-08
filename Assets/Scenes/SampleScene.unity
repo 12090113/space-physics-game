@@ -857,7 +857,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273105947}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 18, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1291715772}
@@ -1037,6 +1037,7 @@ GameObject:
   - component: {fileID: 377368458}
   - component: {fileID: 377368457}
   - component: {fileID: 377368456}
+  - component: {fileID: 377368460}
   m_Layer: 0
   m_Name: ThrusterLeft
   m_TagString: Untagged
@@ -1176,6 +1177,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &377368460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377368454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0407c864a8395947940d6c4bb677d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 30
+  Exhaust: {fileID: 639948727609962927, guid: 7dc92230b3d608741a01e12f8a2baad5, type: 3}
+  offset: -0.5
 --- !u!1 &397416362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,7 +3366,7 @@ FixedJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.5, y: 0}
-  m_ConnectedAnchor: {x: -0.9999999, y: -0.66666645}
+  m_ConnectedAnchor: {x: -1.0000001, y: -0.66666645}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1 &1320170131
@@ -3584,6 +3600,7 @@ GameObject:
   - component: {fileID: 1390825738}
   - component: {fileID: 1390825737}
   - component: {fileID: 1390825736}
+  - component: {fileID: 1390825740}
   m_Layer: 0
   m_Name: ThrusterRight
   m_TagString: Untagged
@@ -3723,6 +3740,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1390825740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390825734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0407c864a8395947940d6c4bb677d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 30
+  Exhaust: {fileID: 639948727609962927, guid: 7dc92230b3d608741a01e12f8a2baad5, type: 3}
+  offset: -0.5
 --- !u!1 &1453246883
 GameObject:
   m_ObjectHideFlags: 0
@@ -4146,7 +4178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97a8c96f8572c904f852f6e8dfb89777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Thrust: {fileID: 639948727609962927, guid: 7dc92230b3d608741a01e12f8a2baad5, type: 3}
+  Exhaust: {fileID: 639948727609962927, guid: 7dc92230b3d608741a01e12f8a2baad5, type: 3}
+  mainThruster: {fileID: 1909211037}
+  rightThruster: {fileID: 1390825740}
+  leftThruster: {fileID: 377368460}
   ship: {fileID: 1291715772}
   started: 0
 --- !u!1 &1905595901
@@ -4338,6 +4373,7 @@ GameObject:
   - component: {fileID: 1909211035}
   - component: {fileID: 1909211034}
   - component: {fileID: 1909211033}
+  - component: {fileID: 1909211037}
   m_Layer: 0
   m_Name: Thruster
   m_TagString: Untagged
@@ -4477,6 +4513,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1909211037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909211031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0407c864a8395947940d6c4bb677d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 100
+  Exhaust: {fileID: 639948727609962927, guid: 7dc92230b3d608741a01e12f8a2baad5, type: 3}
+  offset: -1
 --- !u!1 &1914410482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4501,7 +4552,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914410482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 237.9, y: -35.3, z: 0}
+  m_LocalPosition: {x: 240, y: -40, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1766375671}
@@ -4900,7 +4951,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117235193}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -10, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1569631004}
@@ -4951,7 +5002,7 @@ MonoBehaviour:
   Launcher: {fileID: 1453246883}
   Explosion: {fileID: 639948727609962927, guid: bdc7b10592c7bc54ba812445f5c2237d,
     type: 3}
-  Thrust: {fileID: 639948727609962927, guid: 7dc92230b3d608741a01e12f8a2baad5, type: 3}
+  Exhaust: {fileID: 639948727609962927, guid: 7dc92230b3d608741a01e12f8a2baad5, type: 3}
 --- !u!1 &2137790632
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class ExplosionController : MonoBehaviour
     {
         if (name != "Explosion Center")
         {
-            timer -= Random.Range(0, 20);
+            timer -= Random.Range(0, 50);
         } else
         {
             center = true;

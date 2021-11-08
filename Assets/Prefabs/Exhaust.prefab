@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5479303485641625498}
   - component: {fileID: 1818607010366060715}
   - component: {fileID: 3717734357012718957}
-  - component: {fileID: 1498205492230920115}
+  - component: {fileID: 7356718340117123827}
   m_Layer: 0
-  m_Name: Thrust
+  m_Name: Exhaust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.125
---- !u!114 &1498205492230920115
+--- !u!114 &7356718340117123827
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,3 +135,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341141e311c9b3942ad5dfdd4b6768b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 20

@@ -18,18 +18,18 @@ public class FriendlyShipController : MonoBehaviour
     {
         if (thrusting)
         {
-            NewThrust(transform.up * -3f, transform.up * -1f, 80);
+            NewExhaust(transform.up * -3f, transform.up * -1f, 80);
         }
     }
 
-    void NewThrust(Vector3 offset, Vector2 direction, int size)
+    void NewExhaust(Vector3 offset, Vector2 direction, int size)
     {
         var newProjectile = Instantiate(Thrust);
         newProjectile.transform.position = transform.position + offset;
         var newProjectileRigid = newProjectile.GetComponent<Rigidbody2D>();
         newProjectileRigid.velocity = m_Rigidbody.velocity;
         newProjectileRigid.AddForce(direction);
-        newProjectile.GetComponent<ThrustController>().timer = size;
+        newProjectile.GetComponent<ExhaustController>().timer = size;
         newProjectile.transform.localScale = new Vector3(size / 40.0f, size / 40.0f, 0);
     }
 }

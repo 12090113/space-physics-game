@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrustController : MonoBehaviour
+public class ExhaustController : MonoBehaviour
 {
     public int timer = 20;
 

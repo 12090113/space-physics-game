@@ -6,7 +6,10 @@ using UnityEngine;
 public class EnemyShipController : MonoBehaviour
 {
     Rigidbody2D m_Rigidbody;
-    public GameObject Thrust;
+    public GameObject Exhaust;
+    public ThrusterController mainThruster;
+    public ThrusterController rightThruster;
+    public ThrusterController leftThruster;
     public Transform ship;
     private const float m_Speed = 100.0f;
     private const float rotationSpeed = 0.5f;
@@ -35,33 +38,36 @@ public class EnemyShipController : MonoBehaviour
             }
             else if (right)
             {
-                m_Rigidbody.AddTorque(-3);
-                NewThrust(transform.right * -3f + transform.up * 6f, transform.right * -1f, 30);
+                //m_Rigidbody.AddTorque(-3);
+                //NewExhaust(transform.right * -3f + transform.up * 6f, transform.right * -1f, 30);
+                rightThruster.Thrust();
             }
             else if (!right)
             {
-                m_Rigidbody.AddTorque(3);
-                NewThrust(transform.right * 3f + transform.up * 5.5f, transform.right * 1f, 30);
+                //m_Rigidbody.AddTorque(3);
+                //NewExhaust(transform.right * 3f + transform.up * 5.5f, transform.right * 1f, 30);
+                leftThruster.Thrust();
             }
             if (shipDistance > 600 && Math.Abs(angleDifference) < 90)
             {
-                m_Rigidbody.AddForce(transform.up * m_Speed);
-                NewThrust(transform.up * -9f, transform.up * -1f, 80);
+                //m_Rigidbody.AddForce(transform.up * m_Speed);
+                //NewExhaust(transform.up * -9f, transform.up * -1f, 80);
+                mainThruster.Thrust();
             }
         } else
         {
-            NewThrust(transform.up * -9f, transform.up * -1f, 80);
+            NewExhaust(transform.up * -9f, transform.up * -1f, 80);
         }
     }
 
-    void NewThrust(Vector3 offset, Vector2 direction, int size)
+    void NewExhaust(Vector3 offset, Vector2 direction, int size)
     {
-        var newProjectile = Instantiate(Thrust);
+        var newProjectile = Instantiate(Exhaust);
         newProjectile.transform.position = transform.position + offset;
         var newProjectileRigid = newProjectile.GetComponent<Rigidbody2D>();
         newProjectileRigid.velocity = m_Rigidbody.velocity;
         newProjectileRigid.AddForce(direction);
-        newProjectile.GetComponent<ThrustController>().timer = size;
+        newProjectile.GetComponent<ExhaustController>().timer = size;
         newProjectile.transform.localScale = new Vector3(size / 40.0f, size / 40.0f, 0);
     }
 

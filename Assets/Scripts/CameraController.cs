@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     public Vector3 offset = new Vector3(0, 0, -10);
     private Camera m_Camera;
     private float scroll;
-    private float oldScroll = 12;
+    //private float oldScroll = 12;
     private bool explosion = false;
     // Start is called before the first frame update
     void Start()
@@ -47,12 +47,13 @@ public class CameraController : MonoBehaviour
     public void SwitchToExplosion()
     {
         explosion = true;
-        oldScroll = scroll;
+        //oldScroll = scroll;
         target = GameObject.Find("Explosion Center").transform;
     }
     public void SwitchToPlayer()
     {
-        scroll = oldScroll;
+        if (scroll > 11)
+            scroll -= 10;
         explosion = false;
         target = player;
     }

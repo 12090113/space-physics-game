@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D m_Rigidbody;
     public GameObject Launcher;
     public GameObject Explosion;
-    public GameObject Thrust;
+    public GameObject Exhaust;
 
     // Start is called before the first frame update
     void Start()
@@ -26,27 +26,27 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.W))
             {
                 m_Rigidbody.AddForce(transform.up * m_Speed);
-                NewThrust(transform.up * -0.4f, transform.up * -1f, 20);
+                NewExhaust(transform.up * -0.4f, transform.up * -1f, 20);
             }
             if (Input.GetKey(KeyCode.D) && m_Rigidbody.angularVelocity > -MaxRotate)
             {
                 m_Rigidbody.AddTorque(-rotationSpeed);
-                NewThrust(transform.right * -0.15f + transform.up * 0.4f, transform.right * -1f, 10);
+                NewExhaust(transform.right * -0.15f + transform.up * 0.4f, transform.right * -1f, 10);
             }
             else if (Input.GetKey(KeyCode.A) && m_Rigidbody.angularVelocity < MaxRotate)
             {
                 m_Rigidbody.AddTorque(rotationSpeed);
-                NewThrust(transform.right * 0.1f + transform.up * 0.4f, transform.right * 1f, 10);
+                NewExhaust(transform.right * 0.1f + transform.up * 0.4f, transform.right * 1f, 10);
             }
             else if (m_Rigidbody.angularVelocity < -12)
             {
                 m_Rigidbody.AddTorque(rotationSpeed);
-                NewThrust(transform.right * 0.1f + transform.up * 0.4f, transform.right * 1f, 10);
+                NewExhaust(transform.right * 0.1f + transform.up * 0.4f, transform.right * 1f, 10);
             }
             else if (m_Rigidbody.angularVelocity > 12)
             {
                 m_Rigidbody.AddTorque(-rotationSpeed);
-                NewThrust(transform.right * -0.1f + transform.up * 0.4f, transform.right * -1f, 10);
+                NewExhaust(transform.right * -0.1f + transform.up * 0.4f, transform.right * -1f, 10);
             }
             else
             {
@@ -75,10 +75,10 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < 30; i++)
         {
-            NewExplosion(12 * i, 100 + UnityEngine.Random.Range(-90.0f, 50.0f));
+            NewExplosion(12 * i, 100 + UnityEngine.Random.Range(-90.0f, 100.0f));
         }
         NewExplosion(0, 0, true);
-        transform.position = Launcher.transform.position + transform.up * 10;
+        transform.position = Launcher.transform.position + Launcher.transform.up * 10;
         transform.rotation = new Quaternion(0, 0, 0, 0);
         m_Rigidbody.velocity = Launcher.GetComponent<Rigidbody2D>().velocity;
         m_Rigidbody.angularVelocity = 0;
@@ -103,14 +103,14 @@ public class PlayerController : MonoBehaviour
         NewExplosion(Rotation, Velocity, false);
     }
 
-    void NewThrust(Vector3 offset, Vector2 direction, int size)
+    void NewExhaust(Vector3 offset, Vector2 direction, int size)
     {
-        var newProjectile = Instantiate(Thrust);
+        var newProjectile = Instantiate(Exhaust);
         newProjectile.transform.position = transform.position + offset;
         var newProjectileRigid = newProjectile.GetComponent<Rigidbody2D>();
         newProjectileRigid.velocity = m_Rigidbody.velocity;
         newProjectileRigid.AddForce(direction);
-        newProjectile.GetComponent<ThrustController>().timer = size;
+        newProjectile.GetComponent<ExhaustController>().timer = size;
         newProjectile.transform.localScale = new Vector3(size / 40.0f, size / 40.0f, 0);
     }
 }

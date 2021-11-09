@@ -34,7 +34,7 @@ public class EnemyShipController : MonoBehaviour
             var right = transform.eulerAngles.z > targetRotation.eulerAngles.z;
             if (transform.eulerAngles.z - 6 <= targetRotation.eulerAngles.z && targetRotation.eulerAngles.z <= transform.eulerAngles.z + 6)
             {
-                m_Rigidbody.angularVelocity /= 2;
+                m_Rigidbody.angularVelocity *= .9f;
             }
             else if (right)
             {

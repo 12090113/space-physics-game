@@ -11,6 +11,8 @@ public class CameraController : MonoBehaviour
     public Vector3 offset = new Vector3(0, 0, -10);
     private Camera m_Camera;
     private float scroll;
+    private float touchPos = -2;
+    private float touchID = -1;
     //private float oldScroll = 12;
     private bool explosion = false;
     // Start is called before the first frame update
@@ -29,6 +31,20 @@ public class CameraController : MonoBehaviour
             scroll += 0.1f;
         }
         transform.position = Vector3.Lerp (transform.position, target.position + offset, speed);
+        for (int i = Input.touchCount - 1; i >= 0; i--)
+        {
+            if (Input.touches[i].rawPosition.y/Screen.height > 0.75)
+            {
+                Touch touch = Input.touches[i];
+                if (touch.fingerId == touchID && touch.phase == TouchPhase.Moved) {
+                    Debug.Log(touchID);
+                    scroll += -m_Camera.orthographicSize * (10 * (touch.position.x - touchPos) / Screen.width);
+                    scroll = Mathf.Clamp(scroll, 1, 10000);
+                }
+                touchPos = touch.position.x;
+                touchID = touch.fingerId;
+            }
+        }
         if (Input.GetAxis("Mouse ScrollWheel") != 0f)
         {
             scroll += -m_Camera.orthographicSize * Input.GetAxis("Mouse ScrollWheel");

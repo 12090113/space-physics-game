@@ -11,12 +11,12 @@ public class TextController : MonoBehaviour
     public GameObject player;
     public GameObject enemyShip;
     public GameObject FriendlyShip;
-    public new GameObject camera;
     public List<GameObject> PDCs;
     private int dialogueNum = 0;
     public List<string> dialogue;
     private bool begun = false;
     private int PDCcount = 0;
+    private Touch touch;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,10 @@ public class TextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && !begun)
+        if (Input.touchCount > 0) {
+            touch = Input.GetTouch(0); }
+
+        if (Input.GetKeyDown(KeyCode.Return) || touch.phase == TouchPhase.Ended && !begun)
         {
             if (dialogueNum < dialogue.Count)
             {
@@ -40,7 +43,7 @@ public class TextController : MonoBehaviour
             else
             {
                 player.SetActive(true);
-                camera.GetComponent<CameraController>().SwitchToPlayer();
+                Camera.main.GetComponent<CameraController>().SwitchToPlayer();
                 text.text = "";
                 textContinue.SetActive(false);
                 enemyShip.GetComponent<EnemyShipController>().started = true;
@@ -52,6 +55,7 @@ public class TextController : MonoBehaviour
             }
             dialogueNum++;
         }
+        touch.phase = 0;
     }
 
     public void PDCdestroyed()

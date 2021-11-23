@@ -16,11 +16,14 @@ public class PlayerController : MonoBehaviour
     public GameObject Launcher;
     public GameObject Explosion;
     public GameObject Exhaust;
+    public FixedJoint2D joint;
 
     // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody2D>();
+        joint = gameObject.GetComponent<FixedJoint2D>();
+        Destroy(joint);
     }
 
     // Update is called once per frame
@@ -35,7 +38,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || right && m_Rigidbody.angularVelocity > -MaxRotate)
         {
             m_Rigidbody.AddTorque(-rotationSpeed);
-            NewExhaust(transform.right * -0.15f + transform.up * 0.4f, transform.right * -1f, 10);
+            NewExhaust(transform.right * -0.1f + transform.up * 0.4f, transform.right * -1f, 10);
         }
         else if (Input.GetKey(KeyCode.A) || left && m_Rigidbody.angularVelocity < MaxRotate)
         {
@@ -110,10 +113,12 @@ public class PlayerController : MonoBehaviour
             NewExplosion(12 * i, 100 + UnityEngine.Random.Range(-90.0f, 100.0f));
         }
         NewExplosion(0, 0, true);
-        transform.position = Launcher.transform.position + Launcher.transform.up * 10;
-        transform.rotation = new Quaternion(0, 0, 0, 0);
+        transform.position = Launcher.transform.position + Launcher.transform.up * 8.33f;
+        transform.rotation = Launcher.transform.rotation;
         m_Rigidbody.velocity = Launcher.GetComponent<Rigidbody2D>().velocity;
         m_Rigidbody.angularVelocity = 0;
+        //joint = gameObject.AddComponent<FixedJoint2D>();
+        //joint.connectedBody = Launcher.GetComponent<Rigidbody2D>();
     }
     void NewExplosion(float Rotation, float Velocity, bool center)
     {

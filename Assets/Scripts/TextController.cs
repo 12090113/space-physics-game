@@ -63,7 +63,7 @@ public class TextController : MonoBehaviour
         PDCcount++;
         if (PDCcount >= 4)
         {
-            text.text = "You disabled their ship! We win! Our engines are back online, let's get out of here before more come!";
+            text.text = "You disabled their ship! We win! Our engines are back online; let's get out of here before more come!";
         }
     }
 }

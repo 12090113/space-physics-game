@@ -14,6 +14,7 @@ public class EnemyShipController : MonoBehaviour
     private const float m_Speed = 100.0f;
     private const float rotationSpeed = 0.5f;
     public bool started = false;
+    public bool run = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,11 @@ public class EnemyShipController : MonoBehaviour
             var lookPos = ship.position - transform.position;
             var rotation = ship.rotation;//Quaternion.LookRotation(lookPos);
             float angle = Mathf.Atan2(ship.position.y - transform.position.y, ship.position.x - transform.position.x) * Mathf.Rad2Deg - 90;
-            Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+            if (run)
+            {
+                targetRotation *= Quaternion.Euler(0,0,180);
+            }
             var angleDifference = targetRotation.eulerAngles.z - transform.eulerAngles.z;
             var right = transform.eulerAngles.z > targetRotation.eulerAngles.z;
             if (transform.eulerAngles.z - 6 <= targetRotation.eulerAngles.z && targetRotation.eulerAngles.z <= transform.eulerAngles.z + 6)

@@ -64,6 +64,7 @@ public class TextController : MonoBehaviour
         if (PDCcount >= 4)
         {
             text.text = "You disabled their ship! We win! Our engines are back online; let's get out of here before more come!";
+            enemyShip.GetComponent<EnemyShipController>().run = true;
         }
     }
 }

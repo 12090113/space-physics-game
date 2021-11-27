@@ -72,8 +72,6 @@ public class CameraController : MonoBehaviour
             scroll -= 10;
         explosion = false;
         target = player;
-        //Debug.Log("Before: " + player.GetComponent<PlayerController>().joint);
-        //Destroy(player.GetComponent<PlayerController>().joint);
-        //Debug.Log("After: " + player.GetComponent<PlayerController>().joint);
+        player.GetComponent<PlayerController>().Detatch();
     }
 }

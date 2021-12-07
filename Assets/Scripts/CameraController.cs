@@ -7,13 +7,13 @@ public class CameraController : MonoBehaviour
     public Transform player;
     public Transform ship;
     private Transform target;
+    private Transform background;
     private float speed = 0.125f;
     public Vector3 offset = new Vector3(0, 0, -10);
     private Camera m_Camera;
     private float scroll;
     private float touchPos = -2;
     private float touchID = -1;
-    //private float oldScroll = 12;
     private bool explosion = false;
     // Start is called before the first frame update
     void Start()
@@ -21,9 +21,8 @@ public class CameraController : MonoBehaviour
         m_Camera = GetComponent<Camera>();
         scroll = m_Camera.orthographicSize;
         target = ship;
+        background = transform.GetChild(0);
     }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (explosion)
@@ -51,6 +50,7 @@ public class CameraController : MonoBehaviour
             scroll = Mathf.Clamp(scroll, 1, 10000);
         }
         m_Camera.orthographicSize = Mathf.Lerp(m_Camera.orthographicSize, scroll, 0.1f);
+        background.localScale = new Vector3(m_Camera.orthographicSize*0.08f, m_Camera.orthographicSize*0.08f, 0);
         if (offset.z == -10 && m_Camera.orthographicSize > 70)
         {
             offset.z = -20;
@@ -63,7 +63,6 @@ public class CameraController : MonoBehaviour
     public void SwitchToExplosion()
     {
         explosion = true;
-        //oldScroll = scroll;
         target = GameObject.Find("Explosion Center").transform;
     }
     public void SwitchToPlayer()
@@ -72,5 +71,6 @@ public class CameraController : MonoBehaviour
             scroll -= 10;
         explosion = false;
         target = player;
+        player.GetComponent<PlayerController>().Detatch();
     }
 }

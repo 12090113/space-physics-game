@@ -26,14 +26,14 @@ public class CargoController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         health -= (int)col.relativeVelocity.magnitude / 4;
-        float cargoShade = Mathf.Clamp(health/100.0f, 0, 1);
+        float cargoShade = Mathf.Clamp(health/200.0f + 0.5f, 0.5f, 1);
         renderer.color = new Color(cargoShade, cargoShade, cargoShade, 1f);
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         health -= 50;
-        float cargoShade = Mathf.Clamp(health / 100.0f, 0, 1);
+        float cargoShade = Mathf.Clamp(health/200.0f + 0.5f, 0.5f, 1);
         renderer.color = new Color(cargoShade, cargoShade, cargoShade, 1f);
     }
 

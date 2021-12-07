@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour
 
             if (detonateTimer > 0 && detonateTimer < 100)
                 detonateTimer--;
-            up = left = right = false;
             if (Input.GetKey(KeyCode.Space))
             {
                 Detonate();
@@ -75,6 +74,7 @@ public class PlayerController : MonoBehaviour
     {
         if (input)
         {
+            up = left = right = false;
             for (int i = Input.touchCount - 1; i >= 0; i--)
             {
                 Vector2 tap = new Vector2(Input.touches[i].position.x / Screen.width, Input.touches[i].position.y / Screen.height);

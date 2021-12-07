@@ -49,7 +49,7 @@ public class EnemyShipController : MonoBehaviour
             {
                 leftThruster.Thrust();
             }
-            if (shipDistance > 600 && Math.Abs(angleDifference) < 90)
+            if ((shipDistance > 600 || run) && Math.Abs(angleDifference) < 90)
             {
                 mainThruster.Thrust();
             }

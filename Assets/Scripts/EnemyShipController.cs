@@ -61,9 +61,9 @@ public class EnemyShipController : MonoBehaviour
 
     void NewExhaust(Vector3 offset, Vector2 direction, int size)
     {
-        var newProjectile = Instantiate(Exhaust);
+        GameObject newProjectile = Instantiate(Exhaust);
         newProjectile.transform.position = transform.position + offset;
-        var newProjectileRigid = newProjectile.GetComponent<Rigidbody2D>();
+        Rigidbody2D newProjectileRigid = newProjectile.GetComponent<Rigidbody2D>();
         newProjectileRigid.velocity = m_Rigidbody.velocity;
         newProjectileRigid.AddForce(direction);
         newProjectile.GetComponent<ExhaustController>().timer = size;

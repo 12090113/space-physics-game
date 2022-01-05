@@ -30,7 +30,7 @@ public class TextController : MonoBehaviour
         if (Input.touchCount > 0) {
             touch = Input.GetTouch(0); }
 
-        if (Input.GetKeyDown(KeyCode.Return) || touch.phase == TouchPhase.Ended && !begun)
+        if ((Input.GetKeyDown(KeyCode.Return) || touch.phase == TouchPhase.Ended) && !begun)
         {
             if (dialogueNum < dialogue.Count)
             {

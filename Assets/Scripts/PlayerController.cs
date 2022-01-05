@@ -142,9 +142,9 @@ public class PlayerController : MonoBehaviour
     }
     void NewExplosion(float Rotation, float Velocity, bool center)
     {
-        var newProjectile = Instantiate(Explosion);
+        GameObject newProjectile = Instantiate(Explosion);
         newProjectile.transform.position = transform.position;
-        var newProjectileRigid = newProjectile.GetComponent<Rigidbody2D>();
+        Rigidbody2D newProjectileRigid = newProjectile.GetComponent<Rigidbody2D>();
         newProjectileRigid.velocity = m_Rigidbody.velocity;
         newProjectile.transform.rotation = Quaternion.Euler(0, 0, Rotation);
         newProjectileRigid.AddForce(newProjectile.transform.up * Velocity);
@@ -161,9 +161,9 @@ public class PlayerController : MonoBehaviour
 
     void NewExhaust(Vector3 offset, Vector2 direction, int size)
     {
-        var newProjectile = Instantiate(Exhaust);
+        GameObject newProjectile = Instantiate(Exhaust);
         newProjectile.transform.position = transform.position + offset;
-        var newProjectileRigid = newProjectile.GetComponent<Rigidbody2D>();
+        Rigidbody2D newProjectileRigid = newProjectile.GetComponent<Rigidbody2D>();
         newProjectileRigid.velocity = m_Rigidbody.velocity;
         newProjectileRigid.AddForce(direction);
         newProjectile.GetComponent<ExhaustController>().timer = size;

@@ -22,7 +22,7 @@ public class ThrusterController : MonoBehaviour
     public void Thrust()
     {
         m_Rigidbody.AddForce(transform.up * size);
-        var newProjectile = Instantiate(Exhaust);
+        GameObject newProjectile = Instantiate(Exhaust);
         offset3 = transform.up * offset;
         newProjectile.transform.position = transform.position + offset3;
         var newProjectileRigid = newProjectile.GetComponent<Rigidbody2D>();

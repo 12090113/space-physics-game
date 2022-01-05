@@ -9,6 +9,8 @@ public class CameraController : MonoBehaviour
     private Transform target;
     private Transform background;
     private float speed = 0.125f;
+    public float minZoom = 1f;
+    public float maxZoom = 10000f;
     public Vector3 offset = new Vector3(0, 0, -10);
     private Camera m_Camera;
     private float scroll;
@@ -38,7 +40,7 @@ public class CameraController : MonoBehaviour
                 if (touch.fingerId == touchID && touch.phase == TouchPhase.Moved) {
                     Debug.Log(touchID);
                     scroll += -m_Camera.orthographicSize * (10 * (touch.position.x - touchPos) / Screen.width);
-                    scroll = Mathf.Clamp(scroll, 1, 10000);
+                    scroll = Mathf.Clamp(scroll, minZoom, maxZoom);
                 }
                 touchPos = touch.position.x;
                 touchID = touch.fingerId;
@@ -47,7 +49,7 @@ public class CameraController : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") != 0f)
         {
             scroll += -m_Camera.orthographicSize * Input.GetAxis("Mouse ScrollWheel");
-            scroll = Mathf.Clamp(scroll, 1, 10000);
+            scroll = Mathf.Clamp(scroll, minZoom, maxZoom);
         }
         m_Camera.orthographicSize = Mathf.Lerp(m_Camera.orthographicSize, scroll, 0.1f);
         background.localScale = new Vector3(m_Camera.orthographicSize*0.08f, m_Camera.orthographicSize*0.08f, 0);

@@ -50,7 +50,7 @@ public class CameraController : MonoBehaviour
             scroll = Mathf.Clamp(scroll, 1, 10000);
         }
         m_Camera.orthographicSize = Mathf.Lerp(m_Camera.orthographicSize, scroll, 0.1f);
-        background.localScale = new Vector3(m_Camera.orthographicSize*0.08f, m_Camera.orthographicSize*0.08f, 0);
+        //background.localScale = new Vector3(m_Camera.orthographicSize*0.08f, m_Camera.orthographicSize*0.08f, 0);
         if (offset.z == -10 && m_Camera.orthographicSize > 70)
         {
             offset.z = -20;
